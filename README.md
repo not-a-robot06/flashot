@@ -6,7 +6,10 @@ very useful for turning exam paper questions and answers into flashcards,
 effortlessly
 
 ## demo
-![](demo.mp4)
+![demo](demo.mp4)
+
+https://github.com/user-attachments/assets/0a63378c-315a-4903-a9b2-4a42580d6c24.mp4
+
 
 ## usage
 ### flashot.sh
