@@ -5,6 +5,9 @@ multiple screenshots for one side of a flashcard? no problem!
 very useful for turning exam paper questions and answers into flashcards,
 effortlessly
 
+## demo
+![](demo.mp4)
+
 ## usage
 ### flashot.sh
 - will prompt for name of flashcard collection
