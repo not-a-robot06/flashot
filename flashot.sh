@@ -1,7 +1,12 @@
 #!/bin/sh
 mkdir -p /tmp/flashot
 
-photoname=$(ls /tmp/flashot | cut -d- -f1 | uniq | dmenu -i -p "name of screenshots? (no hyphens)")
+if [ -d /tmp/flashot ]; then
+  photoname=$(ls /tmp/flashot | cut -d- -f1 | uniq | dmenu -i -p "name of screenshots? (no hyphens)")
+else
+  photoname=$(dmenu -i -p "name of screenshots? (no hyphens)")
+fi
+
 case "$photoname" in
   *-* )
     printf "ok" | dmenu -p "not a valid name (no hyphens!)"
@@ -13,7 +18,7 @@ case "$photoname" in
     ;;
 esac
 
-photonumber=$(basename -a $(ls /tmp/flashot/"$photoname"*) | cut -d- -f2 | uniq | tac | dmenu -i -p "number?")
+photonumber=$(basename -a $(ls /tmp/flashot/"$photoname"* 2>/dev/null) 2>/dev/null | cut -d- -f2 | uniq | tac | dmenu -i -p "number?")
 
 type=$(printf "question\nanswer" | dmenu -i -p "question or answer?")
 if [ "$type" = "question" ]; then
@@ -22,7 +27,7 @@ else
   type=a
 fi
 
-partnumber=$(ls /tmp/flashot/"$photoname"-"$photonumber"-"$type"-* | tail -n1 | cut -d- -f4 | cut -d. -f1)
+partnumber=$(ls /tmp/flashot/"$photoname"-"$photonumber"-"$type"-* 2>/dev/null | tail -n1 | cut -d- -f4 | cut -d. -f1)
 if [ -z "$partnumber" ]; then
   partnumber=0
 else
